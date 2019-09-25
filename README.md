@@ -1,6 +1,6 @@
 ## Anchors
 
-*Anchors* are used for sourcing rules into the main ruleset, either on-the-fly with `pfctl`, or from an external text file. They can be combinations of rule snippets, tables, and even other anchors. For example we can create a table that will include a list of random IP addresses that we want write rules against. These are completely arbitrary addresses for demonstration purposes. You can use any combination of address as long as they are logical. For example you cannot use 111.222.333.444
+*Anchors* are used for sourcing rules into the main ruleset, either on-the-fly with `pfctl`, or from an external text file. They can be combinations of rule snippets, tables, and even other anchors. For example we can create a table that will include a list of random IP addresses that we want write rules against. These are completely arbitrary addresses for demonstration purposes. You can use any combination of addresses as long as they are logical. For example you cannot use 111.222.333.444
 
 Create a file named `/etc/random`:
 ```command
@@ -46,7 +46,7 @@ View the anchor in the ruleset:
 sudo pfctl -s rules
 ```
 
-Another intelligent feature of *anchors* is their ability to accept rules on-the-fly without having to reload the ruleset. This can be useful for testing, quick-fixes, emergencies, etc. Let's create an anchor that blocks internal hosts. We'll name it `rogue_hosts`. Once the anchor is in place, we can use it anytime. 
+*Anchors* can also be used to insert rules on-demand without having to reload the main ruleset. This can be useful for testing, quick-fixes, emergencies, etc. Let's create an anchor that blocks internal hosts. We'll name it `rogue_hosts`. Once the anchor is in place, we can use it anytime. 
 
 Add the anchor `rogue_hosts` above the `block all` rule in `pf.conf`:
 ```
@@ -86,8 +86,6 @@ You should see this:
 block return out quick on egress inet from XXX.XXX.XX.XX to any
 ```
 
-There are many pros and cons to using *anchors*, all of which are completely situational. They can help reduce clutter in a ruleset by breaking it up into separate files, but managing multiple files could be cumbersome and hard to read. They can be useful for adding rules on-the-fly, however, someone must be present to add those rules. In other scenarios they are necessary for external applications that are designed to integrate with [PF](https://www.freebsd.org/cgi/man.cgi?query=pf&apropos=0&sektion=0&manpath=FreeBSD+12.0-RELEASE+and+Ports&arch=default&format=html).
-
-
+There are many pros and cons to using *anchors*, all of which are dependent on your needs. They can help reduce clutter from the main ruleset, but managing multiple files could be burdensome. They can be useful for adding rules on-demand, but someone must be present to add those rules. In other scenarios they are necessary for external applications that are designed to integrate with [PF](https://www.freebsd.org/cgi/man.cgi?query=pf&apropos=0&sektion=0&manpath=FreeBSD+12.0-RELEASE+and+Ports&arch=default&format=html).
 
 
