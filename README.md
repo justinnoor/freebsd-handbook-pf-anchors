@@ -73,7 +73,7 @@ View the anchor in the ruleset:
 sudo pfctl -s rules
 ```
 
-Now we add a rule that blocks the host:
+Now add a rule that blocks the host:
 ```command
 sudo sh -c 'echo "block return out quick on egress from XXX.XXX.XX.XX" | pfctl -a rogue_hosts -f -'
 ```
