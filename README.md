@@ -1,6 +1,6 @@
 ## Anchors
 
-*Anchors* are used for sourcing rules into the main ruleset, either on-the-fly with `pfctl`, or from an external text file. They can be combinations of rule snippets, tables, and even other anchors. For example we can create a table that will include a list of random IP addresses that we want write rules against. These are completely arbitrary addresses for demonstration purposes. You can use any combination of addresses as long as they are logical. For example you cannot use 111.222.333.444
+*Anchors* are used for sourcing rules into the main ruleset, either on-demand with `pfctl`, or from an external text file. They can be any combination of rule snippets, tables, and even other anchors. For example we can create a table that includes random IP addresses that we want to ban from the system. These are completely arbitrary addresses for demonstration purposes. You can use any combination of addresses as long as they are logical. For example you cannot use 111.222.333.444
 
 Create a file named `/etc/random`:
 ```command
@@ -87,5 +87,6 @@ block return out quick on egress inet from XXX.XXX.XX.XX to any
 ```
 
 There are many pros and cons to using *anchors*, all of which are dependent on your needs. They can help reduce clutter from the main ruleset, but managing multiple files could be burdensome. They can be useful for adding rules on-demand, but someone must be present to add those rules. In other scenarios they are necessary for external applications that are designed to integrate with [PF](https://www.freebsd.org/cgi/man.cgi?query=pf&apropos=0&sektion=0&manpath=FreeBSD+12.0-RELEASE+and+Ports&arch=default&format=html).
+
 
 
